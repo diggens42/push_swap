@@ -6,16 +6,16 @@
 /*   By: fwahl <fwahl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:52:24 by fwahl             #+#    #+#             */
-/*   Updated: 2024/02/03 14:42:21 by fwahl            ###   ########.fr       */
+/*   Updated: 2024/02/04 18:05:59 by fwahl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	list_len(t_stack_node *stack)
+int	list_len(t_stack *stack)
 {
-	int				len;
-	t_stack_node	*current;
+	int		len;
+	t_stack	*current;
 
 	current = stack;
 	len = 0;
@@ -27,10 +27,10 @@ int	list_len(t_stack_node *stack)
 	return (len);
 }
 
-t_stack_node	*smallest_node(t_stack_node *stack)
+t_stack	*smallest_node(t_stack *stack)
 {
-	t_stack_node	*smallest;
-	
+	t_stack	*smallest;
+
 	if (!stack)
 		return (NULL);
 	smallest = stack;
@@ -43,9 +43,9 @@ t_stack_node	*smallest_node(t_stack_node *stack)
 	return (smallest);
 }
 
-t_stack_node	*biggest_node(t_stack_node *stack)
+t_stack	*biggest_node(t_stack *stack)
 {
-	t_stack_node	*biggest;
+	t_stack	*biggest;
 
 	if (!stack)
 		return (NULL);
@@ -59,11 +59,11 @@ t_stack_node	*biggest_node(t_stack_node *stack)
 	return (biggest);
 }
 
-t_stack_node	*closest_biggest_node(t_stack_node *stack, int num)
+t_stack	*closest_biggest_node(t_stack *stack, int num)
 {
-	t_stack_node	*closest_biggest;
-	t_stack_node	*current_node;
-	long			biggest;
+	t_stack	*closest_biggest;
+	t_stack	*current_node;
+	long	biggest;
 
 	biggest = LONG_MAX;
 	current_node = stack;
@@ -81,11 +81,11 @@ t_stack_node	*closest_biggest_node(t_stack_node *stack, int num)
 	return (closest_biggest);
 }
 
-t_stack_node	*closest_smallest_node(t_stack_node *stack, int num)
+t_stack	*closest_smallest_node(t_stack *stack, int num)
 {
-	t_stack_node	*closest_smallest;
-	t_stack_node	*current_node;
-	long			smallest;
+	t_stack	*closest_smallest;
+	t_stack	*current_node;
+	long	smallest;
 
 	smallest = LONG_MIN;
 	current_node = stack;

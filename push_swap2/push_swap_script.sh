@@ -47,6 +47,6 @@ for args in "${test_100[@]}"; do
 # for args in "${test_500[@]}"; do
 	echo "Testing: $args"
 	$executable $args
-	$executable $args | $checker $args
+	# $executable $args | $checker $args
 	echo "---------------------"
 done

@@ -6,15 +6,15 @@
 /*   By: fwahl <fwahl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 20:59:08 by fwahl             #+#    #+#             */
-/*   Updated: 2024/01/29 16:06:25 by fwahl            ###   ########.fr       */
+/*   Updated: 2024/02/04 18:05:28 by fwahl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	is_sorted(t_stack_node *stack)
+int	is_sorted(t_stack *stack)
 {
-	t_stack_node *current;
+	t_stack	*current;
 
 	if (stack == NULL || stack->next == NULL)
 		return (1);
@@ -30,7 +30,7 @@ int	is_sorted(t_stack_node *stack)
 
 int	update_argc(char **argv)
 {
-	int new_argc;
+	int	new_argc;
 
 	new_argc = 0;
 	while (argv[new_argc] != NULL)
@@ -38,11 +38,11 @@ int	update_argc(char **argv)
 	return (new_argc);
 }
 
-void	free_stack(t_stack_node *stack)
+void	free_stack(t_stack *stack)
 {
-	t_stack_node	*current;
-	t_stack_node	*next_node;
-	
+	t_stack	*current;
+	t_stack	*next_node;
+
 	current = stack;
 	while (current != NULL)
 	{
@@ -52,7 +52,7 @@ void	free_stack(t_stack_node *stack)
 	}
 }
 
-void	free_stacks(t_stack_node *a, t_stack_node *b)
+void	free_stacks(t_stack *a, t_stack *b)
 {
 	free_stack(a);
 	free_stack(b);
@@ -77,7 +77,7 @@ char	**split_argv(char **argv)
 	while (i < split_argc)
 	{
 		new_argv[i + 1] = split_argv[i];
-		i++;	
+		i++;
 	}
 	new_argv[split_argc + 1] = NULL;
 	free(split_argv);
