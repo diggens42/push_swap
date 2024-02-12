@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rev_rotate.c                                       :+:      :+:    :+:   */
+/*   rev_rotate_checker.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fwahl <fwahl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/26 19:38:19 by fwahl             #+#    #+#             */
-/*   Updated: 2024/02/09 13:05:59 by fwahl            ###   ########.fr       */
+/*   Created: 2024/02/09 15:45:54 by fwahl             #+#    #+#             */
+/*   Updated: 2024/02/12 19:39:19 by fwahl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,18 @@ static void	reverse_rotate(t_stack **stack)
 	*stack = last;
 }
 
-void	reverse_rotate_a(t_stack **a)
+void	reverse_rotate_a_checker(t_stack **a)
 {
 	reverse_rotate(a);
-	ft_putstr("rra\n");
 }
 
-void	reverse_rotate_b(t_stack **b)
+void	reverse_rotate_b_checker(t_stack **b)
 {
 	reverse_rotate(b);
-	ft_putstr("rrb\n");
 }
 
-void	reverse_rotate_both(t_stack **a, t_stack **b)
+void	reverse_rotate_both_checker(t_stack **a, t_stack **b)
 {
 	reverse_rotate(a);
 	reverse_rotate(b);
-	ft_putstr("rrr\n");
 }

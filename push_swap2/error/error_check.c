@@ -6,13 +6,13 @@
 /*   By: fwahl <fwahl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 20:43:17 by fwahl             #+#    #+#             */
-/*   Updated: 2024/02/04 18:00:24 by fwahl            ###   ########.fr       */
+/*   Updated: 2024/02/12 19:59:13 by fwahl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	check_duplicates(t_stack *a, t_stack *b)
+void	check_duplicates(char **argv, t_stack *a, bool split)
 {
 	t_stack	*current;
 	t_stack	*checker;
@@ -24,66 +24,67 @@ void	check_duplicates(t_stack *a, t_stack *b)
 		while (checker != NULL)
 		{
 			if (current->num == checker->num)
-			{
-				write(2, "Error Duplicate\n", 16);
-				free_stacks(a, b);
-				exit(EXIT_FAILURE);
-			}
+				error_check_free(&a, argv, split);
 			checker = checker->next;
 		}
 		current = current->next;
 	}
 }
 
-void	check_int_limit(long num, t_stack *a)
+void	check_int_limit(long num, char **argv, t_stack *a, bool split)
 {
 	if (num > INT_MAX || num < INT_MIN)
-	{
-		write(2, "Error Int Limits\n", 17);
-		free_stack(a);
-		exit(EXIT_FAILURE);
-	}
+		error_check_free(&a, argv, split);
 }
 
-void	wrong_input_check(char *argv)
+void	wrong_input_check(char **argv, int i, t_stack *a, bool split)
+{
+	int		j;
+	bool	has_digit;
+
+	has_digit = false;
+	j = 0;
+	while (argv[i][j] != '\0')
+	{
+		if (j == 0 && ft_issign(argv[i][j]) && ft_isdigit(argv[i][j + 1]))
+			j++;
+		else if (ft_isdigit(argv[i][j]))
+		{
+			has_digit = true;
+			j++;
+		}
+		else
+			error_check_free(&a, argv, split);
+	}
+	if (has_digit == false)
+		error_check_free(&a, argv, split);
+}
+
+void	check_empty_string(char **argv)
 {
 	int	i;
+	int	j;
 
 	i = 0;
-	while (argv[i] != '\0')
+	while (argv[i] != NULL)
 	{
-		if (ft_issign(argv[i]) && ft_isdigit(argv[i + 1])
-			&& !(ft_isdigit(argv[i - 1])))
-			i += 2;
-		else if (ft_isdigit(argv[i]))
-			i++;
-		else if (argv[i] == ' '
-			&& (!(ft_isdigit(argv[i - 1])) && ft_isdigit(argv[i + 1])))
-			i++;
-		else
+		j = 0;
+		while (argv[i][j] == ' ' || argv[i][j] == '\t')
+			j++;
+		if (argv[i][j] == '\0')
 		{
-			write(2, "Error Input\n", 12);
+			write(2, "Error\n", 6);
 			exit(EXIT_FAILURE);
 		}
-	}
-}
-
-void	check_empty_string(char *argv)
-{
-	int	i;
-
-	i = 0;
-	while (argv[i] == ' ' || argv[i] == '\t')
 		i++;
-	if (argv[i] == '\0')
-	{
-		write(2, "Error empty string\n", 19);
-		exit(EXIT_FAILURE);
 	}
 }
 
-void	check_argv(char *argv)
+void	error_check_free(t_stack **a, char **argv, bool split)
 {
-	wrong_input_check(argv);
-	check_empty_string(argv);
+	write(2, "Error\n", 6);
+	free_stack(*a);
+	if (split == true)
+		free_split(argv);
+	exit(EXIT_FAILURE);
 }

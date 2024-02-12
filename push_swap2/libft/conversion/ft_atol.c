@@ -1,28 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fwahl <fwahl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/12 19:31:11 by fwahl             #+#    #+#             */
-/*   Updated: 2024/02/12 19:50:24 by fwahl            ###   ########.fr       */
+/*   Created: 2024/01/26 21:03:44 by fwahl             #+#    #+#             */
+/*   Updated: 2024/01/29 16:21:43 by fwahl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+long	ft_atol(const char *s)
 {
-	int		len;
-	t_list	*current;
+	long	result;
+	long	sign;
 
-	current = lst;
-	len = 0;
-	while (lst)
+	result = 0;
+	sign = 1;
+	while (*s != '\0' && ((*s == ' ' || (*s >= '\t' && *s <= '\r'))))
+		s++;
+	if (*s == '-' || *s == '+')
 	{
-		len++;
-		lst = lst -> next;
+		if (*s == '-')
+			sign = -1;
+		s++;
+		if (*s == '-' || *s == '+')
+			return (0);
 	}
-	return (len);
+	while (ft_isdigit(*s))
+	{
+		result = result * 10 + *s - '0';
+		s++;
+	}
+	return (sign * result);
 }

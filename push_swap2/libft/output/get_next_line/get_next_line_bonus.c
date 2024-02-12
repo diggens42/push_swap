@@ -6,11 +6,11 @@
 /*   By: fwahl <fwahl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 20:57:08 by fwahl             #+#    #+#             */
-/*   Updated: 2023/11/04 19:01:02 by fwahl            ###   ########.fr       */
+/*   Updated: 2024/02/09 14:34:01 by fwahl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../libft.h"
 
 static char	*get_line_from_buff(char *buffer)
 {

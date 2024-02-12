@@ -6,7 +6,7 @@
 /*   By: fwahl <fwahl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 19:04:53 by fwahl             #+#    #+#             */
-/*   Updated: 2023/12/08 17:57:30 by fwahl            ###   ########.fr       */
+/*   Updated: 2024/02/10 19:34:45 by fwahl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <stdarg.h>
 # include <fcntl.h>
 # include <sys/select.h>
+# include <stdint.h>
 
 typedef struct s_list
 {
@@ -35,6 +36,7 @@ int				ft_isdigit(int c);
 int				ft_isalnum(int c);
 int				ft_isascii(int c);
 int				ft_isprint(int c);
+int				ft_issign(int c);
 // Memory manipulation functions
 void			*ft_memset(void *b, int c, size_t len);
 void			ft_bzero(void *ptr, size_t n);
@@ -64,6 +66,7 @@ void			ft_striteri(char *s, void (*f)(unsigned int, char*));
 int				ft_toupper(int c);
 int				ft_tolower(int c);
 int				ft_atoi(const char *s);
+long			ft_atol(const char *s);
 // Memory allocation
 void			*ft_calloc(size_t count, size_t size);
 // IO related functions

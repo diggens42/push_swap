@@ -6,7 +6,7 @@
 /*   By: fwahl <fwahl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 17:55:49 by fwahl             #+#    #+#             */
-/*   Updated: 2024/02/04 17:57:18 by fwahl            ###   ########.fr       */
+/*   Updated: 2024/02/12 20:01:04 by fwahl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,9 @@ typedef struct s_stack
 	struct s_stack	*target;
 }	t_stack;
 
-//main
-int				main(int argc, char **argv);
-
-//sorts
-void			sort_3(t_stack **a);
-void			sort_stacks(t_stack **a, t_stack **b);
+//inits
+void			init_stack(int argc, char **argv, t_stack **a, bool split);
+void			sort_check(t_stack *a, t_stack *b, int argc, bool split);
 
 //calcs && move maker
 void			calc_move_cost(t_stack *stack);
@@ -58,22 +55,35 @@ void			push_a(t_stack **a, t_stack **b);
 void			push_b(t_stack **a, t_stack **b);
 
 //errors
-void			check_int_limit(long num, t_stack *a);
-void			check_duplicates(t_stack *a, t_stack *b);
-void			check_argv(char *argv);
-void			wrong_input_check(char *argv);
-void			check_empty_string(char *argv);
+void			check_int_limit(long num, char **argv, t_stack *a, bool split);
+void			check_duplicates(char **argv, t_stack *a, bool split);
+void			wrong_input_check(char **argv, int i, t_stack *a, bool split);
+void			check_empty_string(char **argv);
+void			error_check_free(t_stack **a, char **argv, bool split);
 
 //utils
 int				is_sorted(t_stack *stack);
+int				list_size(t_stack *stack);
 int				update_argc(char **argv);
 void			free_stack(t_stack *stack);
 void			free_stacks(t_stack *a, t_stack *b);
-char			**split_argv(char **argv);
-int				list_len(t_stack *stack);
+void			free_split(char **str);
 t_stack			*smallest_node(t_stack *stack);
 t_stack			*biggest_node(t_stack *stack);
 t_stack			*closest_biggest_node(t_stack *stack, int num);
 t_stack			*closest_smallest_node(t_stack *stack, int num);
+
+//checker(bonus)
+void			push_a_checker(t_stack **a, t_stack **b);
+void			push_b_checker(t_stack **a, t_stack **b);
+void			reverse_rotate_a_checker(t_stack **a);
+void			reverse_rotate_b_checker(t_stack **b);
+void			reverse_rotate_both_checker(t_stack **a, t_stack **b);
+void			rotate_a_checker(t_stack **a);
+void			rotate_b_checker(t_stack **b);
+void			rotate_both_checker(t_stack **a, t_stack **b);
+void			swap_a_checker(t_stack **a);
+void			swap_b_checker(t_stack **b);
+void			swap_both_checker(t_stack **a, t_stack **b);
 
 #endif

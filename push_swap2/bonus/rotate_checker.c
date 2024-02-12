@@ -1,54 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rev_rotate.c                                       :+:      :+:    :+:   */
+/*   rotate_checker.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fwahl <fwahl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/26 19:38:19 by fwahl             #+#    #+#             */
-/*   Updated: 2024/02/09 13:05:59 by fwahl            ###   ########.fr       */
+/*   Created: 2024/02/09 15:46:39 by fwahl             #+#    #+#             */
+/*   Updated: 2024/02/12 19:39:23 by fwahl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static void	reverse_rotate(t_stack **stack)
+static void	rotate(t_stack **stack)
 {
+	t_stack	*first;
 	t_stack	*last;
-	t_stack	*second_last;
 
-	last = *stack;
-	second_last = NULL;
 	if (*stack == NULL || (*stack)->next == NULL)
 		return ;
+	first = *stack;
+	last = *stack;
 	while (last->next != NULL)
-	{
-		second_last = last;
 		last = last->next;
-	}
-	if (second_last != NULL)
-		second_last->next = NULL;
-	last->next = *stack;
-	(*stack)->prev = last;
-	last->prev = NULL;
-	*stack = last;
+	*stack = first->next;
+	(*stack)->prev = NULL;
+	last->next = first;
+	first->prev = last;
+	first->next = NULL;
 }
 
-void	reverse_rotate_a(t_stack **a)
+void	rotate_a_checker(t_stack **a)
 {
-	reverse_rotate(a);
-	ft_putstr("rra\n");
+	rotate(a);
 }
 
-void	reverse_rotate_b(t_stack **b)
+void	rotate_b_checker(t_stack **b)
 {
-	reverse_rotate(b);
-	ft_putstr("rrb\n");
+	rotate(b);
 }
 
-void	reverse_rotate_both(t_stack **a, t_stack **b)
+void	rotate_both_checker(t_stack **a, t_stack **b)
 {
-	reverse_rotate(a);
-	reverse_rotate(b);
-	ft_putstr("rrr\n");
+	rotate(a);
+	rotate(b);
 }

@@ -6,7 +6,7 @@
 /*   By: fwahl <fwahl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 19:21:30 by fwahl             #+#    #+#             */
-/*   Updated: 2024/02/04 18:06:21 by fwahl            ###   ########.fr       */
+/*   Updated: 2024/02/12 20:01:28 by fwahl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	calc_move_cost(t_stack *stack)
 	int	idx;
 	int	size;
 
-	size = list_len(stack);
+	size = list_size(stack);
 	idx = 0;
 	while (idx < size)
 	{

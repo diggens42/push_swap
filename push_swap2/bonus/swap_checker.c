@@ -1,50 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   swap_checker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fwahl <fwahl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/26 18:51:28 by fwahl             #+#    #+#             */
-/*   Updated: 2024/02/12 19:40:39 by fwahl            ###   ########.fr       */
+/*   Created: 2024/02/09 15:47:18 by fwahl             #+#    #+#             */
+/*   Updated: 2024/02/12 19:39:27 by fwahl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static void	rotate(t_stack **stack)
+static void	swap(t_stack **stack)
 {
 	t_stack	*first;
-	t_stack	*last;
+	t_stack	*second;
 
 	if (*stack == NULL || (*stack)->next == NULL)
 		return ;
 	first = *stack;
-	last = *stack;
-	while (last->next != NULL)
-		last = last->next;
-	*stack = first->next;
-	(*stack)->prev = NULL;
-	last->next = first;
-	first->prev = last;
-	first->next = NULL;
+	second = first->next;
+	first->next = second->next;
+	second->prev = first->prev;
+	if (second->next != NULL)
+		second->next->prev = first;
+	first->prev = second;
+	second->next = first;
+	*stack = second;
 }
 
-void	rotate_a(t_stack **a)
+void	swap_a_checker(t_stack **a)
 {
-	rotate(a);
-	ft_putstr("ra\n");
+	swap(a);
 }
 
-void	rotate_b(t_stack **b)
+void	swap_b_checker(t_stack **b)
 {
-	rotate(b);
-	ft_putstr("rb\n");
+	swap(b);
 }
 
-void	rotate_both(t_stack **a, t_stack **b)
+void	swap_both_checker(t_stack **a, t_stack **b)
 {
-	rotate(a);
-	rotate(b);
-	ft_putstr("rr\n");
+	swap(a);
+	swap(b);
 }

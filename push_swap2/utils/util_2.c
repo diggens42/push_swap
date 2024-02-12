@@ -6,25 +6,26 @@
 /*   By: fwahl <fwahl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 16:52:24 by fwahl             #+#    #+#             */
-/*   Updated: 2024/02/04 18:05:59 by fwahl            ###   ########.fr       */
+/*   Updated: 2024/02/12 19:54:12 by fwahl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	list_len(t_stack *stack)
+int	is_sorted(t_stack *stack)
 {
-	int		len;
 	t_stack	*current;
 
+	if (stack == NULL || stack->next == NULL)
+		return (1);
 	current = stack;
-	len = 0;
-	while (current != NULL)
+	while (current->next != NULL)
 	{
-		len++;
+		if (current->num > current->next->num)
+			return (0);
 		current = current->next;
 	}
-	return (len);
+	return (1);
 }
 
 t_stack	*smallest_node(t_stack *stack)
@@ -65,6 +66,7 @@ t_stack	*closest_biggest_node(t_stack *stack, int num)
 	t_stack	*current_node;
 	long	biggest;
 
+	closest_biggest = NULL;
 	biggest = LONG_MAX;
 	current_node = stack;
 	while (current_node)
@@ -87,6 +89,7 @@ t_stack	*closest_smallest_node(t_stack *stack, int num)
 	t_stack	*current_node;
 	long	smallest;
 
+	closest_smallest = NULL;
 	smallest = LONG_MIN;
 	current_node = stack;
 	while (current_node)
