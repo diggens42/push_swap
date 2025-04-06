@@ -2,17 +2,15 @@
 
 Push-Swap is a sorting algorithm that uses the Turk sort to sort a sequence of unique integers in ascending order using two stacks: `a` and `b`. This README describes the rules and available operations to perform the sorting.
 
-## Version 1 - The Rules
-
-### Stack Setup
+## Stack Setup
 - You have two stacks: `a` and `b`.
   - At the beginning, the stack `a` contains a random number of unique integers (both negative and positive).
   - The stack `b` is initially empty.
 
-### Goal
+## Goal
 The goal of the algorithm is to sort the integers in stack `a` in ascending order. To achieve this, you can use the following operations:
 
-### Available Operations
+## Available Operations
 - **sa (swap a)**: Swap the first two elements at the top of stack `a`.
 
 - **sb (swap b)**: Swap the first two elements at the top of stack `b`.
